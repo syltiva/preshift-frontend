@@ -1,33 +1,34 @@
 import { useState, useEffect } from "react";
-import MessageCard from "../components/MessageCard";
+import axios from "axios"
+// import MessageCard from '../components/MessageCard'
 
 const HomeView = () => {
   const [messages, setMessages] = useState([]);
-
   useEffect(() => {
-    getMessage();
-  }, []);
+    getMessages();
+    }, [])
 
-  const getMessage = async () => {
-    const response = await getAllMessages();
-    setMessages(response.data);
-  };
+    async function getMessages() {
+      const response = await axios.get("http://localhost:4200/api/v1/messages")
+      console.log("response", response);
+      setMessages(response.data)
+      }
 
-  return (
-    <div className="container mt-5">
-      <h2>Home View</h2>
-      <div className="container">
-        {board.length === 0 && <h3>no new preshifts notes!</h3>}
-        <div className="row messageCards">
-          {messages.map((message) => (
-            <div key={message._id} className="messageBox row-12">
-              <MessageCard obj={message} />
-            </div>
-          ))}
+      return (
+      <div>
+       <h2>Hi, User!</h2>
+        {messages.map(message => (
+        <div key={message._id}>
+        <h4>Date: {message.date}</h4>
+        <p>Covers: {message.covers}</p>
+        <p>86s: {message.eightySix}</p>
+        <p>Service Notes: {message.serviceNote}</p>
+        <p>Food&Bev Updates: {message.foodBev}</p>
+        <p>Misc: {message.misc}</p>
         </div>
+        ))};
       </div>
-    </div>
-  );
+  )
 };
 
 export default HomeView;

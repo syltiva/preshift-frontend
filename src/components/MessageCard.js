@@ -1,28 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-const defaultImage = "https://assets3.thrillist.com/v1/image/1241868/1200x630";
 
-const MessageCard = ({ obj }) => {
+
+function MessageCard(props) {
+  const { message } = props
   return (
-    <Card style={{ width: "36rem" }}>
-      <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-      <Card.Body>
-        <Card.Title>Date</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-      </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroupItem>Cras justo odio</ListGroupItem>
-        <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-        <ListGroupItem>Vestibulum at eros</ListGroupItem>
-      </ListGroup>
-      <Card.Body>
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
-      </Card.Body>
-    </Card>
+    <div>
+       <h2>Hi User!</h2>
+        {messages.map(message => (
+        <div className="MessageCard">
+        <h4>Date: {message.date}</h4>
+        <p>Covers: {message.covers}</p>
+        <p>86s: {message.eightySix}</p>
+        <p>Service Notes: {message.serviceNote}</p>
+        <p>Food&Bev Updates: {message.foodBev}</p>
+        <p>Misc: {message.misc}</p>
+        </div>
+        ))};
+    </div>
   );
 };
+
+export default MessageCard;

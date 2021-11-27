@@ -12,9 +12,11 @@ const NavBar = () => {
             <Nav.Link href="#home">Home</Nav.Link>
             {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
             <NavDropdown title="Preshift" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Add Covers</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item href="#action/3.1">
                 New Preshift
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                Edit Preshift
               </NavDropdown.Item>
               {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
               {/* <NavDropdown.Divider /> */}
