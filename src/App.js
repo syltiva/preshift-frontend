@@ -7,10 +7,10 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 function App() {
   return (
     <div className="App">
-    <NavBar />
       <BrowserRouter>
+      <NavBar />
         <Routes>
-          <Route path="/home" element={<HomeView />} />
+          <Route path="/" element={<HomeView />} />
         </Routes>
       </BrowserRouter>
     </div>

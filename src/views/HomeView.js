@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios"
-// import MessageCard from '../components/MessageCard'
+import MessageCard from '../components/MessageCard'
 
 const HomeView = () => {
   const [messages, setMessages] = useState([]);
   useEffect(() => {
-    getMessages();
+    getMessages();  
     }, [])
 
     async function getMessages() {
@@ -16,17 +16,11 @@ const HomeView = () => {
 
       return (
       <div>
-       <h2>Hi, User!</h2>
+      <p><br/><br/>
+       <h2>Hi, User!</h2></p>
         {messages.map(message => (
-        <div key={message._id}>
-        <h4>Date: {message.date}</h4>
-        <p>Covers: {message.covers}</p>
-        <p>86s: {message.eightySix}</p>
-        <p>Service Notes: {message.serviceNote}</p>
-        <p>Food&Bev Updates: {message.foodBev}</p>
-        <p>Misc: {message.misc}</p>
-        </div>
-        ))};
+        <MessageCard key={message._id} message={message} />
+        ))};  
       </div>
   )
 };
