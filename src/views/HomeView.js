@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios"
 import MessageCard from '../components/MessageCard'
+import AddMessage from "./AddMessageView";
 
 const HomeView = () => {
   const [messages, setMessages] = useState([]);
@@ -15,13 +16,15 @@ const HomeView = () => {
       }
 
       return (
+      <>
       <div>
-      <p><br/><br/>
-       <h2>Hi, User!</h2></p>
+      <br/><br/>
+       <h2>Hi, User!</h2>
         {messages.map(message => (
         <MessageCard key={message._id} message={message} />
         ))};  
       </div>
+      </>
   )
 };
 
