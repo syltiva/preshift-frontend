@@ -17,7 +17,6 @@ function AddMessageView() {
     const navigate = useNavigate();
    
     useEffect(() => {
-    
     }, []);
 
     const handleChange = event => {
@@ -34,14 +33,13 @@ function AddMessageView() {
             image: imageFile,
         });
         setPreview(URL.createObjectURL(imageFile));
-    }
+    };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log("Submitted: ", message);
-        createMessageInApi(message);
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        await createMessageInApi(message);
         navigate('/')
-        setMessage({})  
+        console.log("SUBMITTED!: ", message);
     }
 
     return (

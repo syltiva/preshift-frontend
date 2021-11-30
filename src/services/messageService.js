@@ -1,13 +1,28 @@
 import axios from 'axios';
 
-const apiUrl = process.env.REACT_APP_API_URL; // REACT.APP.API_URL goes to a different location (globals.d.ts)
+const apiUrl = process.env.REACT_APP_API_URL; 
 
 // POST/message
 export const createMessageInApi = async (message) => {
-    console.log("CREATE, newMessage");
-    const response = await axios.post(`${apiUrl}/messages/message`, message);
-    /* await imageUploadToApi(response.data._id, image)*/
-    alert("New Preshift created")
+    const {image, ...newMessage} = message;
+    console.log("message service, newMessage", newMessage);
+    console.log("message service, message", message);
+
+    const response = await axios.post(`${apiUrl}/messages/message`, newMessage);
+    await imageUploadToApi(response.data._id, message.image)
+    console.log("picture uploaded after message")
+    await alert("New Preshift created")
+    return response;
+}
+
+// POST/image
+export const imageUploadToApi = async (id, img) => {
+    console.log(id)
+    console.log(img)
+    const formData = new FormData();
+    formData.append('image', img);
+    const response = await axios.post(`${apiUrl}/messages/message/imageUpload/${id}`, formData);
+    console.log('UPLOADING IMAGE')
     return response;
 }
 
@@ -37,13 +52,3 @@ export const deleteMessageInApi = async (id) => {
     alert("Preshift Deleted")
     return response;
 }
-
-// POST/image
-export const imageUploadToApi = async (id, img) => {
-    const formData = new FormData();
-    formData.append('image', img);
-    const response = await axios.post(`${apiUrl}/messages/message/imageUpload/${id}`, formData);
-    return response;
-}
-
-

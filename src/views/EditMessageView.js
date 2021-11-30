@@ -3,7 +3,16 @@ import { deleteMessageInApi, getSingleMessageFromApi, updateMessageInApi } from 
 import { Navigate, useNavigate, useParams } from "react-router"
 
 const EditMessageView = () => {
-    const [message, setMessage] = useState({});
+    const [message, setMessage] = useState({
+        image: "",
+        date: "",
+        covers: 0,
+        eightySix: "",
+        serviceNote: "",
+        foodBev: "",
+        misc: "",
+    });
+
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -22,6 +31,15 @@ const EditMessageView = () => {
             [event.target.name]: event.target.value,
         });
         console.log(message)
+    };
+
+    const handleImageChange = (event) => {
+        const imageFile = event.target.file[0];
+        setMessage({
+            ...message,
+            image: imageFile,
+        });
+        setPreview(URL.createObjectURL(imageFile));
     };
 
     const handleSubmit = async (event) => {
@@ -43,13 +61,15 @@ const EditMessageView = () => {
              <div className="col-lg-12 col-m-12">
                  <form>
                      <h4>Edit Preshift</h4>
-                     {/* <label>Image:</label>
+                     <label>Image:</label>
                      <input 
-                        type="text"
+                        className= "form-control"
+                        type="file"
                         name="image"
-                        value={image}
-                        onChange={handleChange}
-                        /> */ }
+                        onChange={handleImageChange}
+                        accept="image/*"
+                        placeholder=""
+                        /> 
 
                      <label>Date: </label>
                      <input
