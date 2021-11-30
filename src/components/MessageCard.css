@@ -9,7 +9,12 @@
 }
 
 .container {
-display: flex;
-justify-content: center;
-text-align:left;
+    display: flex;
+    justify-content: center;
+    text-align:left;
+}
+
+.messageImage {
+    display: flex;
+    justify-content: center;
 }

@@ -10,20 +10,22 @@ const NavBar = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
-            <NavDropdown title="Preshift" id="collasible-nav-dropdown">
+            <Nav.Link href="/newpreshift">Add Preshift</Nav.Link>
+            
+            {/* <NavDropdown title="Preshift" id="collasible-nav-dropdown">
               <NavDropdown.Item href="/newpreshift">
                 New Preshift
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/editpreshift">
+              </NavDropdown.Item> */}
+              {/* <NavDropdown.Item href="/editpreshift">
                 Edit Preshift
-              </NavDropdown.Item>
+              </NavDropdown.Item> */}
               {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
               {/* <NavDropdown.Divider /> */}
               {/* <NavDropdown.Item href="#action/3.4">
                 Current
               </NavDropdown.Item> */}
-            </NavDropdown>
+            {/* </NavDropdown> */}
+
           </Nav>
           <Nav>
             {/* <Nav.Link href="#deets">More deets</Nav.Link>
@@ -31,6 +33,7 @@ const NavBar = () => {
               Dank memes
             </Nav.Link> */}
           </Nav>
+          
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -3,6 +3,9 @@ import axios from "axios"
 import MessageCard from '../components/MessageCard'
 import AddMessage from "./AddMessageView";
 
+const defaultImage =
+"https://www.creativefabrica.com/wp-content/uploads/2019/08/Restaurant-Logo-by-Koko-Store-580x386.jpg"
+
 const HomeView = () => {
   const [messages, setMessages] = useState([]);
   useEffect(() => {
@@ -22,10 +25,10 @@ const HomeView = () => {
        <h2>Hi, User!</h2>
         {messages.map(message => (
         <MessageCard key={message._id} message={message} />
-        ))};  
+        ))}  
       </div>
       </>
-  )
-};
+  );
+}
 
 export default HomeView;

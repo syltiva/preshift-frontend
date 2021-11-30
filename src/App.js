@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import HomeView from "./views/HomeView";
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import AddMessageView from "./views/AddMessageView";
+import EditMessageView from "./views/EditMessageView";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeView />} />
           <Route path="/newpreshift" element={<AddMessageView />} />
+          <Route path="/editpreshift/:id" element={<EditMessageView />} />
         </Routes>
       </BrowserRouter>
     </div>

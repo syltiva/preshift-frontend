@@ -1,95 +1,127 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router';
+import { createMessageInApi } from "../services/messageService"
 
-function AddMessage(props) {
-    // const [image, setImage] = useState('');
-    const [date, setDate] = useState('');
-    const [covers, setCovers] = useState(0);
-    const [eightySix, setEightySix] = useState('');
-    const [serviceNote, setServiceNote] = useState('');
-    const [foodBev, setFoodBev] = useState('');
-    const [misc, setMisc] = useState('');
+function AddMessageView() {
+    const [preview, setPreview] = useState("")
+    const [message, setMessage] = useState({
+        image: "",
+        date: "",
+        covers: 0,
+        eightySix: "",
+        serviceNote: "",
+        foodBev: "",
+        misc: ""
+    });
+    
+    const navigate = useNavigate();
+   
+    useEffect(() => {
+    
+    }, []);
 
-    // const handleImageInput = event => setImage(event.target.value);
-    const handleDateInput = event => setDate(event.target.value) 
-    const handleCoversInput = event => setCovers(event.target.value);
-    const handleEightySixInput = event => setEightySix(event.target.value);
-    const handleServiceNoteInput = event => setServiceNote(event.target.value);
-    const handleFoodBevInput = event => setFoodBev(event.target.value);
-    const handleMiscInput = event => setMisc(event.target.value);
+    const handleChange = event => {
+        setMessage({
+            ...message,
+            [event.target.name]: event.target.value,
+        })
+    };
+
+    const handleImageChange = (event) => {
+        const imageFile = event.target.files[0];
+        setMessage({
+            ...message,
+            image: imageFile,
+        });
+        setPreview(URL.createObjectURL(imageFile));
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const newMessage = { /*image,*/ date, covers, eightySix, serviceNote, foodBev, misc };
-
-        console.log("Submitted: ", newMessage);
+        console.log("Submitted: ", message);
+        createMessageInApi(message);
+        navigate('/')
+        setMessage({})  
     }
 
     return (
-    <div className="AddMessage">
-        <h4>Add Preshift</h4>
+    <div className="">
 
-        <form onSubmit={handleSubmit }>
-            {/* <label>Image:</label>
-            <input 
-                type="text"
-                name="image"
-                value={image}
-                onChange={handleImageInput}
-                /> */}
+        <form style={{width: 500, margin: '20px auto', textAlign: 'left', border: '1px solid lightgrey', padding: 10}} onSubmit={handleSubmit}>
+        <h4>Add Preshift</h4>
+                <label>Image:</label>
+                <input 
+                    className="form-control"
+                    type="file"
+                    name="image"
+                    onChange={handleImageChange}
+                    accept="image/*"
+                    placeholder="image"
+
+                /> 
 
                 <label>Date: </label>
-                <input 
+                <input
+                    className="form-control" 
                     type="text"
                     name="date"
-                    value={date}
-                    onChange={handleDateInput}
+                    value={message.date}
+                    onChange={handleChange}
+                    placeholder= "Saturday, 01/01/2050"
                 />
 
                 <label>Covers: </label>
-                <input 
+                <input
+                    className="form-control" 
                     type="number"
                     name="covers"
-                    value={covers}
-                    onChange={handleCoversInput}
+                    value={message.covers}
+                    onChange={handleChange}
                 />
 
                 <label>86s: </label>
-                <input 
+                <input
+                    className="form-control" 
                     type="text"
                     name="eightySix"
-                    value={eightySix}
-                    onChange={handleEightySixInput}
+                    value={message.eightySix}
+                    onChange={handleChange}
                 />
 
                 <label>Service Notes: </label>
-                <input 
+                <textarea
+                    className="form-control" 
                     type="text"
                     name="serviceNote"
-                    value={serviceNote}
-                    onChange={handleServiceNoteInput}
+                    value={message.serviceNote}
+                    onChange={handleChange}
                 />
 
                 <label>Food&Bev Update: </label>
-                <input 
+                <textarea
+                    className="form-control" 
                     type="text"
                     name="foodBev"
-                    value={foodBev}
-                    onChange={handleFoodBevInput}
+                    value={message.foodBev}
+                    onChange={handleChange}
                 />
 
                 <label>Misc: </label>
-                <input 
+                <textarea
+                    className="form-control" 
                     type="text"
                     name="misc"
-                    value={misc}
-                    onChange={handleMiscInput}
+                    value={message.misc}
+                    onChange={handleChange}
                 />
 
-                <button type="submit">Add Preshift</button>
+                <button onClick={handleSubmit} type="submit">Add Preshift</button>
 
                 
         </form>
+
+        <img style={{height: 300, width: 'auto', margin: "20px 0 40px 0"}} src={preview} />
     </div>
 )};
 
-export default AddMessage;
+export default AddMessageView;
