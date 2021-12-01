@@ -8,6 +8,7 @@ const defaultImage =
 "https://www.creativefabrica.com/wp-content/uploads/2019/08/Restaurant-Logo-by-Koko-Store-580x386.jpg"
 
 const HomeView = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const user = isAuthenticated()
   const [messages, setMessages] = useState([]);
   useEffect(() => {
@@ -15,7 +16,7 @@ const HomeView = () => {
     }, [])
 
     async function getMessages() {
-      const response = await axios.get("http://localhost:4200/api/v1/messages")
+      const response = await axios.get(`${apiUrl}/messages`)
       console.log("response", response);
       setMessages(response.data)
       }
