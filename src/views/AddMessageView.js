@@ -28,6 +28,7 @@ function AddMessageView() {
 
     const handleImageChange = (event) => {
         const imageFile = event.target.files[0];
+        console.log("event.target.files[0] from Add:", event.target.files[0])
         setMessage({
             ...message,
             image: imageFile,

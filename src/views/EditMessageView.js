@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { deleteMessageInApi, getSingleMessageFromApi, updateMessageInApi } from "../services/messageService";
+import { deleteMessageInApi, getSingleMessageFromApi, updateMessageInApi, imageUploadToApi } from "../services/messageService";
 import { Navigate, useNavigate, useParams } from "react-router"
 
 const EditMessageView = () => {
+    const [preview, setPreview] = useState("")
     const [message, setMessage] = useState({
         image: "",
         date: "",
@@ -33,12 +34,11 @@ const EditMessageView = () => {
         console.log(message)
     };
 
-    const handleImageChange = (event) => {
-        const imageFile = event.target.file[0];
-        setMessage({
-            ...message,
-            image: imageFile,
-        });
+    const handleImageChange = async (event) => {
+        const imageFile = event.target.files[0]
+        console.log("event.target.files[0] from Edit:", event.target.files[0])
+        await imageUploadToApi(id, imageFile)
+        getMessage();
         setPreview(URL.createObjectURL(imageFile));
     };
 
@@ -50,6 +50,8 @@ const EditMessageView = () => {
     };
 
     const handleDelete = async (event) => {
+        const option = window.confirm("Delete preshift?");
+        if (!option) return;
         event.preventDefault();
         const response = await deleteMessageInApi(id);
         navigate('/')
@@ -136,6 +138,7 @@ const EditMessageView = () => {
                      >Delete Preshift</button>
 
                  </form>
+                 <img style={{height: 300, width: 'auto', margin: "20px 0 40px 0"}} src={preview} />
              </div>
          </div>
      </div>   

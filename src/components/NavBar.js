@@ -1,39 +1,47 @@
 import "./NavBar.css";
 import { Navbar, Container, NavDropdown, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom"
+import { logOut, isAuthenticated } from "../services/authService";
+
 
 const NavBar = () => {
+  const user = isAuthenticated();
   return (
     <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand>Restaurant</Navbar.Brand>
+        <Link to="/">Restaurant</Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/newpreshift">Add Preshift</Nav.Link>
-            
-            {/* <NavDropdown title="Preshift" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/newpreshift">
-                New Preshift
-              </NavDropdown.Item> */}
-              {/* <NavDropdown.Item href="/editpreshift">
-                Edit Preshift
-              </NavDropdown.Item> */}
-              {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
-              {/* <NavDropdown.Divider /> */}
-              {/* <NavDropdown.Item href="#action/3.4">
-                Current
-              </NavDropdown.Item> */}
-            {/* </NavDropdown> */}
+            {
+              user.role === "ADMIN" && (
+                <>
+                <Link to="/newpreshift">Add Preshift</Link>
+                </>
+              )
+            }
+            </Nav>
+          
+            <Nav className="links">
+            {user ? (
+              <>
+              <a>
+                Hi, {user.name}
+              </a>
+              <button onClick={logOut} className="btn btn-outline-light">
+              Sign Out
+              </button>
+              </>
+
+            ) : (
+              <>
+              <Link to="/login">Log In</Link><br/>
+              <Link to="/signup">Sign Up</Link><br/>
+              </>
+            )}
+          
 
           </Nav>
-          <Nav>
-            {/* <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link> */}
-          </Nav>
-          
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -40,7 +40,7 @@ export const getSingleMessageFromApi = async (id) => {
 
 // Put/messages/message/id
 export const updateMessageInApi = async (obj) => {
-    /* const{ image, ...message} = obj */
+    // const { image, ...message} = obj; 
     const response = await axios.put(`${apiUrl}/messages/message/${obj._id}`, obj);
     alert ("Preshift Updated")
     return response;

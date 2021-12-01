@@ -1,15 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./MessageCard.css"
+import {useParams} from "react-router"
+import { isAuthenticated } from "../services/authService";
 
 const defaultImage =
   "https://www.creativefabrica.com/wp-content/uploads/2019/08/Restaurant-Logo-by-Koko-Store-580x386.jpg"
 
-function MessageCard(props) {
+function MessageCard(props) { 
   const { message } = props
+  const {id} = useParams();
+  const user = isAuthenticated();
 
 
   return (
+    <>
     <div className="container mt-5">
       <div className="row">
         <div className="col-sm-12 col-m-12">
@@ -32,11 +37,16 @@ function MessageCard(props) {
           <b>Service Notes: </b>{message.serviceNote}<br/>
           <b>Food&Bev Updates: </b>{message.foodBev}<br/>
           <b>Misc:  </b>{message.misc}</p>
-          <Link to={`/editpreshift/${message._id}`} className="btn btn-primary" > Edit</Link>
+          {user.role === "ADMIN" && (
+            <Link to={`/editpreshift/${message._id}`} className="btn btn-primary" >
+            Edit
+            </Link>
+          )}
           </div>
         </div>
       </div>   
     </div>
+    </>
   );
 };
 
