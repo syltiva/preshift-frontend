@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { signUpUser } from '../services/authService'
+import { useNavigate } from 'react-router';
 
 const Signup = () => {
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         name: "",
         email: "",
@@ -24,6 +26,8 @@ const Signup = () => {
             password: ""
         })
         alert (`Welcome ${user.name}!`)
+        await navigate("/");
+
     }
 
     return (
