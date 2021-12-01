@@ -30,6 +30,8 @@ function App() {
             <Route path="/" element={<HomeView />} />
           </Route>
 
+          
+
         </Routes>
       </BrowserRouter>
     </div>

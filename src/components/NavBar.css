@@ -1,0 +1,22 @@
+.restaurant-name {
+    color: white;
+    text-decoration: none;
+    font-size: 32px;
+    padding: 5px 35px 10px 0;
+    font-weight: bold;
+    text-shadow: 5px 5px 10px lightgrey;
+
+
+}
+.restaurant-name:hover {
+    color: gray
+}
+
+.links {
+    text-decoration: none;
+    color: white
+}
+
+.links:hover {
+    color: gray
+}

@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router';
 import { createMessageInApi } from "../services/messageService"
+import {Spinner} from "react-bootstrap"
+import './AddMessageView.css'
+
 
 function AddMessageView() {
+    const [loading, setLoading] = useState(false);
     const [preview, setPreview] = useState("")
     const [message, setMessage] = useState({
         image: "",
@@ -38,15 +42,34 @@ function AddMessageView() {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        await createMessageInApi(message);
-        navigate('/')
+        
+        setLoading(true);
+        setTimeout(async() => {
+            await createMessageInApi(message);
+            await navigate('/')
+            setLoading(false);
+
+        }, 2000)
+        
         console.log("SUBMITTED!: ", message);
     }
 
     return (
-    <div className="">
+        <div className="addview-background">
+        <div className="container">
+        {loading && (
+          <div style={{textAlign: 'center', marginTop: 20}}> 
+          <Spinner animation="grow" variant="secondary" />
+          <Spinner animation="grow" variant="secondary" />
+          <Spinner animation="grow" variant="secondary" />
+          <br/><p style={{color: "white"}}>loading.</p>
+        </div>
+        )}
+        </div>
+    <div className="form-card">
+    <br/><br/><br/>
 
-        <form style={{width: 500, margin: '20px auto', textAlign: 'left', border: '1px solid lightgrey', padding: 10}} onSubmit={handleSubmit}>
+        <form className="form-style" >
         <h4>Add Preshift</h4>
                 <label>Image:</label>
                 <input 
@@ -57,7 +80,7 @@ function AddMessageView() {
                     accept="image/*"
                     placeholder="image"
 
-                /> 
+                /> <br/>
 
                 <label>Date: </label>
                 <input
@@ -67,7 +90,7 @@ function AddMessageView() {
                     value={message.date}
                     onChange={handleChange}
                     placeholder= "Saturday, 01/01/2050"
-                />
+                /><br/>
 
                 <label>Covers: </label>
                 <input
@@ -76,7 +99,7 @@ function AddMessageView() {
                     name="covers"
                     value={message.covers}
                     onChange={handleChange}
-                />
+                /><br/>
 
                 <label>86s: </label>
                 <input
@@ -85,7 +108,7 @@ function AddMessageView() {
                     name="eightySix"
                     value={message.eightySix}
                     onChange={handleChange}
-                />
+                /><br/>
 
                 <label>Service Notes: </label>
                 <textarea
@@ -94,7 +117,7 @@ function AddMessageView() {
                     name="serviceNote"
                     value={message.serviceNote}
                     onChange={handleChange}
-                />
+                /><br/>
 
                 <label>Food&Bev Update: </label>
                 <textarea
@@ -103,7 +126,7 @@ function AddMessageView() {
                     name="foodBev"
                     value={message.foodBev}
                     onChange={handleChange}
-                />
+                /><br/>
 
                 <label>Misc: </label>
                 <textarea
@@ -112,15 +135,13 @@ function AddMessageView() {
                     name="misc"
                     value={message.misc}
                     onChange={handleChange}
-                />
-
+                /><br/>
                 <button onClick={handleSubmit} type="submit">Add Preshift</button>
-
-                
+                <img style={{width: 400, height: "auto", margin: "20px 0 40px 0"}} src={preview} />
         </form>
-
-        <img style={{height: 300, width: 'auto', margin: "20px 0 40px 0"}} src={preview} />
     </div>
+    </div>
+    
 )};
 
 export default AddMessageView;

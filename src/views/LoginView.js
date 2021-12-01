@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { loginUserToApi } from '../services/authService';
+import "./Auth.css"
 
 const LoginView = () => {
     const navigate = useNavigate();
@@ -37,9 +38,10 @@ const LoginView = () => {
     }
 
     return (
-        <div className="container mt-5">
+        <div className="login-background">
+        <div className="container">
             <form className="form">
-                <h3>Login View</h3>
+                <h3>Employee Log In</h3>
                 <input  
                     onChange={handleChange}
                     name="email"
@@ -47,7 +49,7 @@ const LoginView = () => {
                     className= "form-control"
                     type="text"
                     placeholder="email"
-                />
+                /><br/>
                 <input 
                     onChange={handleChange}
                     name="password"
@@ -55,13 +57,14 @@ const LoginView = () => {
                     className="form-control"
                     type="password"
                     placeholder="password"
-                />
+                /><br/>
                 <button
-                    onClick={handleSubmit}
-                    className="form-control btn btn-success">
+                    onClick={handleSubmit} 
+                    className="form-control btn btn-outline-dark">
                         Log In
-                </button>
+                </button><br/>
             </form>
+        </div>
         </div>
     )
 }

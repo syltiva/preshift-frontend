@@ -27,6 +27,7 @@ const Signup = () => {
     }
 
     return (
+        <div className="login-background">
         <div className="container">
             <form className="form">
                 <h3>Sign Up</h3>
@@ -37,7 +38,7 @@ const Signup = () => {
                     placeholder = "name"
                     type= "text"
                     className="form-control"
-                />
+                /><br/>
                 <input
                     value={user.email}
                     onChange={handleChange}
@@ -45,7 +46,7 @@ const Signup = () => {
                     placeholder="email"
                     type="text"
                     className="form-control"
-                />
+                /><br/>
                 <input
                     value={user.password}
                     onChange={handleChange}
@@ -53,13 +54,14 @@ const Signup = () => {
                     placeholder="password"
                     type="password"
                     className="form-control"
-                />
+                /><br/>
                 <button
                     onClick={handleSubmit}
-                    className="form-control btn btn-success">
+                    className="form-control btn btn-outline-dark">
                     Sign Up
                 </button>
         </form>
+    </div>
     </div>
     );
 };

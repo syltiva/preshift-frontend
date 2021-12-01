@@ -1,0 +1,14 @@
+.background {
+    background: url("https://res.cloudinary.com/syltiva/image/upload/v1638389780/1200x630_xf5tbn.jpg") center/cover no-repeat fixed;
+    min-height: 100vh;
+    
+}
+
+
+.message-card {
+    background-color: white;
+}
+
+img {
+    border: solid 1px black;
+}

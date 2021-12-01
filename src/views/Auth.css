@@ -1,5 +1,5 @@
-.message-card {
-    width: 55vw;
+.form {
+    width: 30vw;
     border: solid 1px lightgrey;
     padding: 2vw;
     line-height: 150%;
@@ -11,21 +11,13 @@
     align-items: center;
     justify-content: center;
     opacity: 95%;
-
+    background-color: white ;
+    margin-top: 12rem;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    text-align:left;
+.login-background {
+    background: url("https://res.cloudinary.com/syltiva/image/upload/v1638389815/1477372666.38_lyrowq.jpg") center/cover no-repeat fixed;
+    min-height: 100vh;
 }
 
-.messageImage {
-    display: flex;
-    justify-content: center;
-}
-
-.card-content {
-    width: 80%;
-
-}
+    

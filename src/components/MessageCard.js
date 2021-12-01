@@ -19,6 +19,13 @@ function MessageCard(props) {
       <div className="row">
         <div className="col-sm-12 col-m-12">
           <div key={message._id} className="message-card"><br/><br/> 
+          <h4 style={{
+            textAlign: "right",
+            alignSelf: "flex-end",
+            paddingRight: "3.2rem"
+
+          }}>
+          <b>{message.date}</b></h4><br/>
           <div className="messageImage">
           <img style={{
             width: "40vw"
@@ -27,21 +34,20 @@ function MessageCard(props) {
             alt="preshift image"/>
           </div>
           <br/>
-          
-          <h4 style={{
-            textAlign: "right"
-          }}>
-          <b>Date: </b>{message.date}</h4>
-          <p><b>Covers: </b>{message.covers}<br/>
-          <b>86s: </b>{message.eightySix}<br/>
-          <b>Service Notes: </b>{message.serviceNote}<br/>
-          <b>Food&Bev Updates: </b>{message.foodBev}<br/>
-          <b>Misc:  </b>{message.misc}</p>
+          <div className="card-content">
+          <p><b>COVERS: </b>{message.covers}<br/>
+          <b>86s: </b><br/>{message.eightySix}<br/>
+          <b>SERVICE: </b><br/>{message.serviceNote}<br/>
+          <b>FOOD&BEV: </b><br/>{message.foodBev}<br/>
+          <b>MISC:  </b><br/>{message.misc}</p>
+          <div style={{textAlign: "right"}}>
           {user.role === "ADMIN" && (
-            <Link to={`/editpreshift/${message._id}`} className="btn btn-primary" >
-            Edit
+            <Link to={`/editpreshift/${message._id}`} className="btn btn-outline-dark" >
+            edit
             </Link>
           )}
+          </div>
+          </div>
           </div>
         </div>
       </div>   

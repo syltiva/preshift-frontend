@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
 import { deleteMessageInApi, getSingleMessageFromApi, updateMessageInApi, imageUploadToApi } from "../services/messageService";
 import { Navigate, useNavigate, useParams } from "react-router"
+import {Spinner} from "react-bootstrap"
+import "./AddMessageView.css"
+import "./EditMessageView.css"
 
 const EditMessageView = () => {
+    const [loading, setLoading] = useState(false);
     const [preview, setPreview] = useState("")
     const [message, setMessage] = useState({
         image: "",
@@ -44,9 +48,17 @@ const EditMessageView = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await updateMessageInApi(message);
-        getMessage();
-        navigate('/')
+
+        setLoading(true);
+        setTimeout(async ()=> {
+            const response = await updateMessageInApi(message);
+            getMessage();
+            await navigate('/')
+            setLoading(false)
+
+
+        }, 2000)
+        
     };
 
     const handleDelete = async (event) => {
@@ -58,10 +70,23 @@ const EditMessageView = () => {
     }
 
     return (
+        <div className="editview-background">
+         <div className="container">
+        {loading && (
+          <div style={{textAlign: 'center', marginTop: 20}}> 
+          <Spinner animation="grow" variant="secondary" />
+          <Spinner animation="grow" variant="secondary" />
+          <Spinner animation="grow" variant="secondary" />
+          <br/><p style={{color: "white"}}>loading.</p>
+        </div>
+        )}
+        </div>
+        <div className="form-card">
+    <br/><br/><br/>
      <div className="container">
          <div className="row">
              <div className="col-lg-12 col-m-12">
-                 <form>
+                 <form className="form-style">
                      <h4>Edit Preshift</h4>
                      <label>Image:</label>
                      <input 
@@ -71,7 +96,7 @@ const EditMessageView = () => {
                         onChange={handleImageChange}
                         accept="image/*"
                         placeholder=""
-                        /> 
+                        /> <br/>
 
                      <label>Date: </label>
                      <input
@@ -80,7 +105,7 @@ const EditMessageView = () => {
                         name="date"
                         value={message.date}
                         onChange={handleChange}    
-                    /> 
+                    /> <br/>
 
                      <label>Covers: </label>
                      <input
@@ -89,7 +114,7 @@ const EditMessageView = () => {
                         name="covers"
                         value={message.covers}
                         onChange={handleChange}
-                    />
+                    /><br/>
 
                      <label>86s: </label>
                      <input
@@ -98,7 +123,7 @@ const EditMessageView = () => {
                         name="eightySix"
                         value={message.eightySix}
                         onChange={handleChange}
-                    />
+                    /><br/>
 
                      <label>Service Notes: </label>
                      <textarea
@@ -107,7 +132,7 @@ const EditMessageView = () => {
                         name="serviceNote"
                         value={message.serviceNote}
                         onChange={handleChange}
-                    />
+                    /><br/>
 
                      <label>Food&Bev Update: </label>
                      <textarea
@@ -116,7 +141,7 @@ const EditMessageView = () => {
                         name="foodBev"
                         value={message.foodBev}
                         onChange={handleChange}
-                    />
+                    /><br/>
 
                      <label>Misc: </label>
                      <textarea
@@ -125,23 +150,26 @@ const EditMessageView = () => {
                          name="misc"
                          value={message.misc}
                          onChange={handleChange}
-                    />
+                    /><br/>
 
                      <button 
                          onClick={handleSubmit}
-                         className=""
-                     >Submit</button>
+                         className="btn btn-outline-dark"
+                     >Submit</button><br/>
 
                      <button
                          onClick={handleDelete}
-                         className=""
-                     >Delete Preshift</button>
+                         className="btn btn-outline-dark"
+                     >Delete Preshift</button><br/>
+                      <img style={{width:400, height: "auto", margin: "20px 0 40px 0"}} src={preview} />
 
                  </form>
-                 <img style={{height: 300, width: 'auto', margin: "20px 0 40px 0"}} src={preview} />
+                
              </div>
          </div>
      </div>   
+     </div>
+     </div>
     )
 }
 

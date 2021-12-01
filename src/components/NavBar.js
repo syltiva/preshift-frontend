@@ -7,36 +7,33 @@ import { logOut, isAuthenticated } from "../services/authService";
 const NavBar = () => {
   const user = isAuthenticated();
   return (
-    <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar className="nav-style" sticky="top" collapseOnSelect expand="lg" bg="black" variant="dark">
       <Container>
-        <Link to="/">Restaurant</Link>
+        <Link to="/" className="restaurant-name">Bar&Boeuf</Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             {
               user.role === "ADMIN" && (
                 <>
-                <Link to="/newpreshift">Add Preshift</Link>
+                <Link className="links" to="/newpreshift">Add Preshift</Link>
                 </>
               )
             }
-            </Nav>
+            </Nav><br/>
           
             <Nav className="links">
             {user ? (
               <>
-              <a>
-                Hi, {user.name}
-              </a>
+
               <button onClick={logOut} className="btn btn-outline-light">
               Sign Out
               </button>
               </>
-
             ) : (
               <>
-              <Link to="/login">Log In</Link><br/>
-              <Link to="/signup">Sign Up</Link><br/>
+              <Link to="/login" className="btn btn-outline-light">Log In</Link><br/>
+              <Link to="/signup" className="btn btn-outline-light">Sign Up</Link><br/>
               </>
             )}
           
