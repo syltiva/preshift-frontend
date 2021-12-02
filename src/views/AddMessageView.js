@@ -136,7 +136,7 @@ function AddMessageView() {
                     value={message.misc}
                     onChange={handleChange}
                 /><br/>
-                <button onClick={handleSubmit} type="submit">Add Preshift</button>
+                <button className="btn btn-outline-dark" onClick={handleSubmit} type="submit">Add Preshift</button>
                 <img style={{width: 400, height: "auto", margin: "20px 0 40px 0"}} src={preview} />
         </form>
     </div>

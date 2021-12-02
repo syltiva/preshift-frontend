@@ -1,3 +1,8 @@
+.login-background {
+    background: url("https://res.cloudinary.com/syltiva/image/upload/v1638389815/1477372666.38_lyrowq.jpg") center/cover no-repeat fixed;
+    min-height: 100vh;
+}
+
 .form {
     width: 30vw;
     border: solid 1px lightgrey;
@@ -10,14 +15,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    opacity: 95%;
+    opacity: .9;
     background-color: white ;
     margin-top: 12rem;
 }
 
-.login-background {
-    background: url("https://res.cloudinary.com/syltiva/image/upload/v1638389815/1477372666.38_lyrowq.jpg") center/cover no-repeat fixed;
-    min-height: 100vh;
-}
+
 
     
